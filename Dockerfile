@@ -2,25 +2,25 @@ FROM alpine:3.5
 MAINTAINER Smruti Ranjan Tripathy <smrutirtripathy@gmail.com>
 RUN apk add --no-cache \
     apache2-proxy \
-    php7-fpm \
-    php7 \
-    php7-opcache \
-    php7-phar \
-    php7-json \
-    php7-iconv \
-    php7-xml \
-    php7-mbstring \
-    php7-openssl \
-    php7-pdo \
-    php7-ldap \
-    php7-gd \
-    php7-curl \
-    php7-ctype \
-    php7-dom \
-    php7-common \
-    php7-pdo_mysql \
-    php7-session \
-    php7-soap \
+    php7.1-fpm \
+    php7.1 \
+    php7.1-opcache \
+    php7.1-phar \
+    php7.1-json \
+    php7.1-iconv \
+    php7.1-xml \
+    php7.1-mbstring \
+    php7.1-openssl \
+    php7.1-pdo \
+    php7.1-ldap \
+    php7.1-gd \
+    php7.1-curl \
+    php7.1-ctype \
+    php7.1-dom \
+    php7.1-common \
+    php7.1-pdo_mysql \
+    php7.1-session \
+    php7.1-soap \
     grep \
     git \
     curl \
