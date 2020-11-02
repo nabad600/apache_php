@@ -29,10 +29,10 @@ RUN  rm -rf /etc/init.d/*; \
      mkdir /run/apache2; \
      addgroup -g 1000 -S www-data; \
      adduser -G www-data -u 1000 -s /bin/sh -D www-data; \
-     sed -rie 's|;error_log = log/php7/error.log|error_log = /dev/stdout|g' /etc/php7/php-fpm.conf 
+     sed -rie 's|;error_log = log/php7.3/error.log|error_log = /dev/stdout|g' /etc/php7.3/php-fpm.conf 
 COPY httpd.conf /etc/apache2/httpd.conf
-COPY www.conf /etc/php7/php-fpm.d/www.conf
-COPY php.ini /etc/php7/php.ini
+COPY www.conf /etc/php7.3/php-fpm.d/www.conf
+COPY php.ini /etc/php7.3/php.ini
 COPY scripts /scripts
 RUN chmod -R 755 /scripts
 CMD ["/scripts/run.sh"]
