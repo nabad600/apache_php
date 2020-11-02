@@ -27,8 +27,8 @@ RUN apk add --no-cache \
     vim 
 RUN  rm -rf /etc/init.d/*; \
      mkdir /run/apache2; \
-     addgroup -g 1000 -S site; \
-     adduser -G site -u 1000 -s /bin/sh -D site; \
+     addgroup -g 1000 -S www-data; \
+     adduser -G www-data -u 1000 -s /bin/sh -D www-data; \
      sed -rie 's|;error_log = log/php7/error.log|error_log = /dev/stdout|g' /etc/php7/php-fpm.conf 
 COPY httpd.conf /etc/apache2/httpd.conf
 COPY www.conf /etc/php7/php-fpm.d/www.conf
