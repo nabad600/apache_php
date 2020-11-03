@@ -25,6 +25,7 @@ RUN apk add --no-cache \
     git \
     curl \
     vim 
+RUN apk add --no-cache bash gawk sed grep bc coreutils
 RUN  rm -rf /etc/init.d/*; \
      mkdir /run/apache2; \
      addgroup -g 1000 -S www-data; \
