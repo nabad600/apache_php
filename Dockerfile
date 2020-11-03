@@ -35,7 +35,7 @@ COPY www.conf /etc/php7/php-fpm.d/www.conf
 COPY php.ini /etc/php7/php.ini
 COPY scripts /scripts
 RUN chmod -R 755 /scripts
-CMD ["/scripts/run.sh"]
+CMD ["/scripts/run.sh"] 
 
 
 
