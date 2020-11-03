@@ -1,11 +1,11 @@
-FROM php:7.3-fpm-alpine
+FROM alpine:3.7
 MAINTAINER Smruti Ranjan Tripathy <smrutirtripathy@gmail.com>
 RUN apk add --no-cache \
     apache2-proxy \
     php7-fpm \
     php7 \
     php7-opcache \
-    php7-phar \
+    php7-phar \ 
     php7-json \
     php7-iconv \
     php7-xml \
