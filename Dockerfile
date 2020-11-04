@@ -1,4 +1,4 @@
-FROM php:7.3-fpm-alpine
+FROM alpine:3.6
 MAINTAINER Smruti Ranjan Tripathy <smrutirtripathy@gmail.com>
 RUN apk add --no-cache \
     apache2-proxy \
