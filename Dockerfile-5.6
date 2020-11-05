@@ -1,8 +1,5 @@
 FROM alpine:3.6
-MAINTAINER Tomas Janecek
-LABEL Description="A Simple apache/php image using alpine Linux for Web Apps"
-
-# Setup apache and php
+MAINTAINER Smruti Ranjan Tripathy <smrutirtripathy@gmail.com>
 RUN apk --no-cache add \
         apache2 \
         php5-apache2 \
@@ -20,13 +17,14 @@ RUN apk --no-cache add \
         php5-dom \
         php5-iconv \
     && mkdir /run/apache2
-
-WORKDIR /var/www/html
-
-VOLUME /var/www/localhost/htdocs/
-
-USER nobody
-
-COPY httpd5.6.conf /etc/apache2/httpd.conf
-    
-CMD [ "/usr/sbin/httpd", "-D", "FOREGROUND", "-f", "/etc/apache2/httpd.conf" ]
+RUN  rm -rf /etc/init.d/*; \
+     mkdir /run/apache2; \
+     addgroup -g 1000 -S site; \
+     adduser -G site -u 1000 -s /bin/sh -D site; \
+     sed -rie 's|;error_log = log/php5/error.log|error_log = /dev/stdout|g' /etc/php5/php-fpm.conf 
+COPY httpd.conf /etc/apache2/httpd.conf
+COPY www.conf /etc/php5/php-fpm.d/www.conf
+COPY php.ini /etc/php5/php.ini
+COPY scripts /scripts
+RUN chmod -R 755 /scripts
+CMD ["/scripts/run.sh"]
