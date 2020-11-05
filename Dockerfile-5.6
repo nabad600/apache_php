@@ -1,40 +1,32 @@
-FROM alpine:3.5
+FROM alpine:3.6
+MAINTAINER Tomas Janecek
+LABEL Description="A Simple apache/php image using alpine Linux for Web Apps"
 
-RUN apk --update add \
-        apache2-proxy \
+# Setup apache and php
+RUN apk --no-cache add \
+        apache2 \
         php5-apache2 \
-        php5 \
-        php5-bcmath \
-        php5-dom \
-        php5-ctype \
-        php5-curl \
-        php5-fpm \
-        php5-gd \
-        php5-iconv \
-        php5-intl \
+        curl \
         php5-json \
-        php5-mcrypt \
-        php5-opcache \
-        php5-openssl \
-        php5-pdo \
-        php5-pdo_mysql \
-        php5-pdo_pgsql \
-        php5-pdo_sqlite \
         php5-phar \
-        php5-posix \
-        php5-soap \
+        php5-openssl \ 
+        php5-mysql \
+        php5-curl \
+        php5-mcrypt \
+        php5-pdo_mysql \
+        php5-ctype \
+        php5-gd \
         php5-xml \
-    && rm -rf /var/cache/apk/*
+        php5-dom \
+        php5-iconv \
+    && mkdir /run/apache2
 
-COPY php-fpm.conf /etc/php5/php-fpm.conf
-RUN  rm -rf /etc/init.d/*; \
-     mkdir /run/apache2; \
-     addgroup -g 1000 -S www-data; \
-     adduser -G www-data -u 1000 -s /bin/sh -D www-data; \
-     sed -rie 's|;error_log = log/php5/error.log|error_log = /dev/stdout|g' /etc/php5/php-fpm.conf 
-COPY httpd.conf /etc/apache2/httpd.conf
-COPY www.conf /etc/php5/php-fpm.d/www.conf
-COPY php.ini /etc/php5/php.ini
-COPY scripts /scripts
-RUN chmod -R 755 /scripts
-CMD ["/scripts/run.sh"]
+WORKDIR /var/www/html
+
+VOLUME /var/www/html
+
+USER nobody
+
+COPY httpd5.6.conf /etc/apache2/httpd.conf
+    
+CMD [ "/usr/sbin/httpd", "-D", "FOREGROUND", "-f", "/etc/apache2/httpd.conf" ]
