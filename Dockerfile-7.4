@@ -1,27 +1,10 @@
-FROM php:7.3-fpm-alpine
+FROM php:7.4-fpm-alpine
 MAINTAINER Naba Das <nabad600@gmail.com>
 RUN apk add --no-cache \
     apache2-proxy \
-    php7-fpm \
-    php7 \
-    php7-opcache \
-    php7-phar \ 
-    php7-json \
-    php7-iconv \
-    php7-xml \
-    php7-mbstring \
-    php7-openssl \
-    php7-pdo \
-    php7-ldap \
-    php7-gd \
-    php7-curl \
-    php7-ctype \
-    php7-dom \
-    php7-common \
-    php7-pdo_mysql \
-    php7-session \
-    php7-soap \
-    grep \
+    apache2
+RUN apk add --update --no-cache libgd libpng-dev libjpeg-turbo-dev freetype-dev
+RUN apk add grep \
     git \
     curl \
     vim 
