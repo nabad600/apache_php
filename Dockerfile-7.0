@@ -1,30 +1,42 @@
 FROM php:7.0.10-fpm-alpine
 MAINTAINER Smruti Ranjan Tripathy <smrutirtripathy@gmail.com>
 RUN apk add --no-cache \
-    apache2-proxy \
-    php7-fpm \
-    php7 \
-    php7-opcache \
-    php7-phar \ 
-    php7-json \
-    php7-iconv \
-    php7-xml \
-    php7-mbstring \
-    php7-openssl \
-    php7-pdo \
-    php7-ldap \
-    php7-gd \
-    php7-curl \
-    php7-ctype \
-    php7-dom \
-    php7-common \
-    php7-pdo_mysql \
-    php7-session \
-    php7-soap \
-    grep \
-    git \
-    curl \
-    vim 
+    php7.0 \
+        php7.0-phar \
+        php7.0-bcmath \
+        php7.0-calendar \
+        php7.0-mbstring \
+        php7.0-exif \
+        php7.0-ftp \
+        php7.0-openssl \
+        php7.0-zip \
+        php7.0-sysvsem \
+        php7.0-sysvshm \
+        php7.0-sysvmsg \
+        php7.0-shmop \
+        php7.0-sockets \
+        php7.0-zlib \
+        php7.0-bz2 \
+        php7.0-curl \
+        php7.0-simplexml \
+        php7.0-xml \
+        php7.0-opcache \
+        php7.0-dom \
+        php7.0-xmlreader \
+        php7.0-xmlwriter \
+        php7.0-tokenizer \
+        php7.0-ctype \
+        php7.0-session \
+        php7.0-fileinfo \
+        php7.0-iconv \
+        php7.0-json \
+        php7.0-posix \
+        php7.0-apache2 \
+        curl \
+        vim \
+        bash \
+        runit \
+        apache2
 RUN  rm -rf /etc/init.d/*; \
      mkdir /run/apache2; \
      addgroup -g 1000 -S www-data; \
