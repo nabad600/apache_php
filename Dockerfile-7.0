@@ -63,7 +63,7 @@ RUN sed -i "s/#LoadModule\ rewrite_module/LoadModule\ rewrite_module/" /etc/apac
     && sed -i "s/#LoadModule\ deflate_module/LoadModule\ deflate_module/" /etc/apache2/httpd.conf \
     && sed -i "s#^DocumentRoot \".*#DocumentRoot \"/var/www/localhost/htdocs"#g" /etc/apache2/httpd.conf \
     && sed -i "s#/var/www/localhost/htdocs#/var/www/localhost/htdocs#" /etc/apache2/httpd.conf \
-    && printf "\n<Directory \"/app/public\">\n\tAllowOverride All\n</Directory>\n" >> /etc/apache2/httpd.conf
+    && printf "\n<Directory \"/var/www/localhost/htdocs\">\n\tAllowOverride All\n</Directory>\n" >> /etc/apache2/httpd.conf
 
 RUN mkdir /var/www/localhost && mkdir /var/www/localhost/htdocs && chown -R apache:apache /var/www/localhost/htdocs && chmod -R 755 /var/www/localhost/htdocs && mkdir bootstrap
 ADD start.sh /bootstrap/
