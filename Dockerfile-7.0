@@ -1,5 +1,5 @@
-FROM php:7.0.10-fpm-alpine
-MAINTAINER Smruti Ranjan Tripathy <smrutirtripathy@gmail.com>
+FROM alpine:3.7
+MAINTAINER Naba Das <nabad600@gmail.com>
 RUN apk add --no-cache \
     php7.0 \
         php7.0-phar \
