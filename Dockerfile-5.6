@@ -17,7 +17,6 @@ RUN apk --no-cache add \
         php5-dom \
         php5-iconv \
         && mkdir /run/apache2
-  
 
 COPY httpd.conf /etc/apache2/httpd.conf
 COPY www.conf /etc/php5/php-fpm.d/www.conf
