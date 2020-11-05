@@ -30,9 +30,9 @@ RUN  rm -rf /etc/init.d/*; \
      addgroup -g 1000 -S site; \
      adduser -G site -u 1000 -s /bin/sh -D site; \
      sed -rie 's|;error_log = log/php7/error.log|error_log = /dev/stdout|g' /etc/php7/php-fpm.conf 
-COPY httpd.conf /etc/apache2/httpd.conf
-COPY www.conf /etc/php7/php-fpm.d/www.conf
-COPY php.ini /etc/php7/php.ini
+COPY httpd7.conf /etc/apache2/httpd.conf
+COPY www7.conf /etc/php7/php-fpm.d/www.conf
+COPY php7.ini /etc/php7/php.ini
 COPY scripts /scripts
 RUN chmod -R 755 /scripts
 CMD ["/scripts/run.sh"]
