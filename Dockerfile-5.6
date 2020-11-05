@@ -73,7 +73,7 @@ RUN apk add --update --no-cache bash \
 
 RUN apk add --update --no-cache imagemagick-dev \
 				ffmpeg
-RUN ln -s /usr/bin/php5 /usr/bin/php
+#RUN ln -s /usr/bin/php5 /usr/bin/php
 RUN curl -sS https://getcomposer.org/installer | php5 -- --install-dir=/usr/bin --filename=composer 
 
 RUN  rm -rf /var/cache/apk/*
