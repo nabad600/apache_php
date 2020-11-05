@@ -57,7 +57,7 @@ RUN cp /usr/bin/php7 /usr/bin/php \
 
 # Add apache to run and configure
 
-RUN mkdir /var/www/localhost && mkdir /var/www/localhost/htdocs && chown -R apache:apache /var/www/localhost/htdocs && chmod -R 755 /var/www/localhost/htdocs && mkdir bootstrap
+RUN mkdir /var/www/localhost/htdocs && chown -R apache:apache /var/www/localhost/htdocs && chmod -R 755 /var/www/localhost/htdocs && mkdir bootstrap
 ADD start.sh /bootstrap/
 RUN chmod +x /bootstrap/start.sh
 
