@@ -1,4 +1,4 @@
-FROM alpine:3.5
+FROM alpine:3.13
 MAINTAINER Naba Das <nabad600@gmail.com>
 RUN apk add --no-cache \
     apache2-proxy \
