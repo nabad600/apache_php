@@ -1,5 +1,5 @@
 #!/bin/sh  
-fbranch=test
+fbranch=automation
 username='nabad600'
 password='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'
 branch=$(git symbolic-ref --short HEAD)
