@@ -2,6 +2,8 @@
 fbranch=test
 username='nabad600'
 password='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'
+branch=$(git symbolic-ref --short HEAD)
+echo $branch
 echo $fbranch
 if [ $branch == $fbranch ]
 then
@@ -21,7 +23,7 @@ git push origin $branch
 data=$(cat <<-END
 {
   "base": "master",
-  "head": "$branch",
+  "head": "$fbranch",
   "body": "$commit"
 }
 END
