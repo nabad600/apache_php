@@ -1,7 +1,7 @@
 #!/bin/sh  
 fbranch=test
 username='nabad600'
-password='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'
+password='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'
 branch=$(git symbolic-ref --short HEAD)
 echo $branch
 echo $username
@@ -23,31 +23,31 @@ git commit -m "$commit"
 git push origin $branch
 # PR create
 
-curl \
-  -X POST \
-  -H "Accept: application/vnd.github.v3+json" \
-  https://api.github.com/repos/nabad600/apache_php/pulls \
-  -d '{"head":"copyright_updater","base":"master"}' 
+# curl \
+#   -X POST \
+#   -H "Accept: application/vnd.github.v3+json" \
+#   https://api.github.com/repos/nabad600/apache_php/pulls \
+#   -d '{"head":"copyright_updater","base":"master"}' 
 # request_base_url=`git remote -v show | tr '\n' ' ' | perl -pe 's|.*${REMOTE}\s+?git@(.*?):(.*?)\.git\s+?\(push\).*|http://\1/\2/pull/new/|'`
 # echo $request_base_url
 # pull_request_url=${request_base_url}
 # open $pull_request_url
-# data=$(cat <<-END
-# {
-#   "base": "master",
-#   "head": "$branch",
-#   "body": "$commit"
-# }
-# END
-# )
-# status_code=$(curl -s --user "$username:$password" -X POST "https://api.github.com/repos/ccnokes/git-automation-sandbox/pulls" -d "$data" -w %{http_code} -o /dev/null)
+data=$(cat <<-END
+{
+  "base": "master",
+  "head": "$branch",
+  "body": "$commit"
+}
+END
+)
+status_code=$(curl -s --user "$username:$password" -X POST "https://api.github.com/repos/ccnokes/git-automation-sandbox/pulls" -d "$data" -w %{http_code} -o /dev/null)
 
-# if [[ $status_code == "201" ]]; then
-#   echo "Complete!"
-# else
-#   echo "Error occurred, $status_code status received" >&2
-#   exit 1
-# fi
+if [[ $status_code == "201" ]]; then
+  echo "Complete!"
+else
+  echo "Error occurred, $status_code status received" >&2
+  exit 1
+fi
 
 # put this in your .bash_profile
 # pull_request() {
