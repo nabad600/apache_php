@@ -79,8 +79,8 @@ REPO_OWNER="nabad600"
 REPO_NAME="apache_php"
 BASE_BRANCH="master"  # The branch you want to merge into
 HEAD_BRANCH="test"    # The branch containing your changes
-PR_TITLE="Pull Request Title"
-PR_BODY="Pull Request Description"
+PR_TITLE="testing"
+PR_BODY="Added renewed SSL certs"
 
 # GitHub Personal Access Token (Replace with your token)
 GITHUB_TOKEN="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"
