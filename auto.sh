@@ -25,19 +25,21 @@ git push origin $branch
 
 request_base_url=`git remote -v show | tr '\n' ' ' | perl -pe 's|.*${REMOTE}\s+?git@(.*?):(.*?)\.git\s+?\(push\).*|http://\1/\2/pull/new/|'`
 echo $request_base_url
-data=$(cat <<-END
-{
-  "base": "master",
-  "head": "$branch",
-  "body": "$commit"
-}
-END
-)
-status_code=$(curl -s --user "$username:$password" -X POST "https://api.github.com/repos/ccnokes/git-automation-sandbox/pulls" -d "$data" -w %{http_code} -o /dev/null)
+pull_request_url=${request_base_url}${branch}
+open $pull_request_url
+# data=$(cat <<-END
+# {
+#   "base": "master",
+#   "head": "$branch",
+#   "body": "$commit"
+# }
+# END
+# )
+# status_code=$(curl -s --user "$username:$password" -X POST "https://api.github.com/repos/ccnokes/git-automation-sandbox/pulls" -d "$data" -w %{http_code} -o /dev/null)
 
-if [[ $status_code == "201" ]]; then
-  echo "Complete!"
-else
-  echo "Error occurred, $status_code status received" >&2
-  exit 1
-fi
+# if [[ $status_code == "201" ]]; then
+#   echo "Complete!"
+# else
+#   echo "Error occurred, $status_code status received" >&2
+#   exit 1
+# fi
