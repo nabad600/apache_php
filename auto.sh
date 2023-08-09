@@ -32,22 +32,22 @@ git push origin $branch
 # echo $request_base_url
 # pull_request_url=${request_base_url}
 # open $pull_request_url
-data=$(cat <<-END
-{
-  "base": "master",
-  "head": "$branch",
-  "body": "$commit"
-}
-END
-)
-status_code=$(curl -s --user "$username:$password" -X POST "https://api.github.com/repos/nabad600/apache_php/pulls" -d "$data" -w %{http_code} -o /dev/null)
+# data=$(cat <<-END
+# {
+#   "base": "master",
+#   "head": "$branch",
+#   "body": "$commit"
+# }
+# END
+# )
+# status_code=$(curl -s --user "$username:$password" -X POST "https://api.github.com/repos/nabad600/apache_php/pulls" -d "$data" -w %{http_code} -o /dev/null)
 
-if [[ $status_code == "201" ]]; then
-  echo "Complete!"
-else
-  echo "Error occurred, $status_code status received" >&2
-  exit 1
-fi
+# if [[ $status_code == "201" ]]; then
+#   echo "Complete!"
+# else
+#   echo "Error occurred, $status_code status received" >&2
+#   exit 1
+# fi
 
 # put this in your .bash_profile
 # pull_request() {
@@ -73,3 +73,29 @@ fi
 # # usage
 # pull_request              # PR to master
 # pull_request other_branch # PR to other_branch
+
+REPO_OWNER="nabad600"
+REPO_NAME="apache_php"
+BASE_BRANCH="master"  # The branch you want to merge into
+HEAD_BRANCH="test"    # The branch containing your changes
+PR_TITLE="Pull Request Title"
+PR_BODY="Pull Request Description"
+
+# GitHub Personal Access Token (Replace with your token)
+GITHUB_TOKEN="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"
+
+# Create a pull request using the GitHub API
+response=$(curl -X POST \
+    -H "Authorization: token $GITHUB_TOKEN" \
+    -d '{
+        "title": "'"$PR_TITLE"'",
+        "body": "'"$PR_BODY"'",
+        "head": "'"$REPO_OWNER:$HEAD_BRANCH"'",
+        "base": "'"$BASE_BRANCH"'"
+    }' \
+    "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/pulls")
+
+# Extract the pull request URL from the API response
+pr_url=$(echo "$response" | jq -r '.html_url')
+
+echo "Pull request created: $pr_url"
