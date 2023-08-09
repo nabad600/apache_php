@@ -24,6 +24,7 @@ git push origin $branch
 # PR create
 data=$(cat <<-END
 {
+  "title": "rt",
   "base": "master",
   "head": "$fbranch",
   "body": "$commit"
