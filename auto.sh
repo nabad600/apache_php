@@ -24,7 +24,7 @@ git push origin $branch
 # PR create
 
 request_base_url=`git remote -v show | tr '\n' ' ' | perl -pe 's|.*${REMOTE}\s+?git@(.*?):(.*?)\.git\s+?\(push\).*|http://\1/\2/pull/new/|'`
-echo $request_base_url
+# echo $request_base_url
 pull_request_url=${request_base_url}${branch}
 open $pull_request_url
 # data=$(cat <<-END
