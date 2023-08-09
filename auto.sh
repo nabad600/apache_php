@@ -40,7 +40,7 @@ data=$(cat <<-END
 }
 END
 )
-status_code=$(curl -s --user "$username:$password" -X POST "https://api.github.com/repos/ccnokes/git-automation-sandbox/pulls" -d "$data" -w %{http_code} -o /dev/null)
+status_code=$(curl -s --user "$username:$password" -X POST "https://api.github.com/repos/nabad600/apache_php/pulls" -d "$data" -w %{http_code} -o /dev/null)
 
 if [[ $status_code == "201" ]]; then
   echo "Complete!"
