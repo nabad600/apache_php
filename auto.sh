@@ -18,13 +18,14 @@ echo $commit
 git commit -m "$commit"
 git push origin $branch
 # PR create
-data=
+data=$(cat <<-END
 {
   "base": "master",
   "head": "$branch",
   "body": "$commit"
-
 }
+END
+)
 status_code=$(curl -s --user "$username:$password" -X POST "https://api.github.com/repos/ccnokes/git-automation-sandbox/pulls" -d "$data" -w %{http_code} -o /dev/null)
 
 if [[ $status_code == "201" ]]; then
