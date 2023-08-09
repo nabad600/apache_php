@@ -6,6 +6,7 @@ RUN apk add --no-cache \
 RUN apk add --update --no-cache libgd libpng-dev libjpeg-turbo-dev freetype-dev
 RUN apk add grep \
     git \
+    
     curl \
     vim 
 RUN  rm -rf /etc/init.d/*; \
