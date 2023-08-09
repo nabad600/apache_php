@@ -1,7 +1,7 @@
 #!/bin/sh  
 fbranch=test
 username='nabad600'
-password='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'
+password='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'
 branch=$(git symbolic-ref --short HEAD)
 echo $branch
 echo $username
