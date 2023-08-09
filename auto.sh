@@ -26,7 +26,7 @@ data=$(cat <<-END
 {
   "title": "rt",
   "base": "master",
-  "head": "$fbranch",
+  "head": "$branch",
   "body": "$commit"
 }
 END
