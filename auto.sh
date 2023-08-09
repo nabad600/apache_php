@@ -31,7 +31,7 @@ PR_TITLE="testing"
 PR_BODY="Added renewed SSL certs"
 
 # GitHub Personal Access Token (Replace with your token)
-GITHUB_TOKEN="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"
+GITHUB_TOKEN="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"
 
 # Create a pull request using the GitHub API
 response=$(curl -X POST \
