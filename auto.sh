@@ -26,7 +26,7 @@ git push origin $branch
 REPO_OWNER="nabad600"
 REPO_NAME="apache_php"
 BASE_BRANCH="master"  # The branch you want to merge into
-HEAD_BRANCH="test"    # The branch containing your changes
+HEAD_BRANCH="automation"    # The branch containing your changes
 PR_TITLE="testing"
 PR_BODY="Added renewed SSL certs"
 
