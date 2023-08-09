@@ -4,6 +4,8 @@ username='nabad600'
 password='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'
 branch=$(git symbolic-ref --short HEAD)
 echo $branch
+echo $username
+echo $password
 echo $fbranch
 if [ $branch == $fbranch ]
 then
