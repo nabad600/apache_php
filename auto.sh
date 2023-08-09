@@ -22,9 +22,11 @@ echo $commit
 git commit -m "$commit"
 git push origin $branch
 # PR create
+
+request_base_url=`git remote -v show | tr '\n' ' ' | perl -pe 's|.*${REMOTE}\s+?git@(.*?):(.*?)\.git\s+?\(push\).*|http://\1/\2/pull/new/|'`
+echo $request_base_url
 data=$(cat <<-END
 {
-  "title": "rt",
   "base": "master",
   "head": "$branch",
   "body": "$commit"
