@@ -23,10 +23,10 @@ git commit -m "$commit"
 git push origin $branch
 # PR create
 
-request_base_url=`git remote -v show | tr '\n' ' ' | perl -pe 's|.*${REMOTE}\s+?git@(.*?):(.*?)\.git\s+?\(push\).*|http://\1/\2/pull/new/|'`
+# request_base_url=`git remote -v show | tr '\n' ' ' | perl -pe 's|.*${REMOTE}\s+?git@(.*?):(.*?)\.git\s+?\(push\).*|http://\1/\2/pull/new/|'`
 # echo $request_base_url
-pull_request_url=${request_base_url}
-open $pull_request_url
+# pull_request_url=${request_base_url}
+# open $pull_request_url
 # data=$(cat <<-END
 # {
 #   "base": "master",
@@ -43,3 +43,28 @@ open $pull_request_url
 #   echo "Error occurred, $status_code status received" >&2
 #   exit 1
 # fi
+
+# put this in your .bash_profile
+pull_request() {
+  to_branch=$1
+  if [ -z $to_branch ]; then
+    to_branch="master"
+  fi
+  
+  # try the upstream branch if possible, otherwise origin will do
+  upstream=$(git config --get remote.upstream.url)
+  origin=$(git config --get remote.origin.url)
+  if [ -z $upstream ]; then
+    upstream=$origin
+  fi
+  
+  to_user=$(echo $upstream | sed -e 's/.*[\/:]\([^/]*\)\/[^/]*$/\1/')
+  from_user=$(echo $origin | sed -e 's/.*[\/:]\([^/]*\)\/[^/]*$/\1/')
+  repo=$(basename `git rev-parse --show-toplevel`)
+  from_branch=$(git rev-parse --abbrev-ref HEAD)
+  open "https://github.com/$to_user/$repo/pull/new/$to_user:$to_branch...$from_user:$from_branch"
+}
+ 
+# usage
+pull_request              # PR to master
+pull_request other_branch # PR to other_branch
