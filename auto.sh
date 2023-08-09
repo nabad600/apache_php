@@ -26,7 +26,7 @@ git push origin $branch
 curl \
   -X POST \
   -H "Accept: application/vnd.github.v3+json" \
-  https://api.github.com/repos/nabad600/pulls \
+  https://api.github.com/repos/nabad600/apache_php/pulls \
   -d '{"head":"copyright_updater","base":"master"}' 
 # request_base_url=`git remote -v show | tr '\n' ' ' | perl -pe 's|.*${REMOTE}\s+?git@(.*?):(.*?)\.git\s+?\(push\).*|http://\1/\2/pull/new/|'`
 # echo $request_base_url
